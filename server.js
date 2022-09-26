@@ -4,10 +4,11 @@ const fs = require('fs');
 const {ServerThing} = require( "./modules/ServerThing.js");
 const {SessionManager} = require("./modules/SessionManager.js");
 const {ParseBody} = require("./modules/BodyParser.js");
+const config = require("./config.json");
 let pdfServer = new ServerThing();
 let pdfSessionManager = new SessionManager();
-let adminUser = "YurtAdmin";
-let adminPass = "YurtPassw";
+let adminUser = config.username;
+let adminPass = config.password;
 let fileNames = [];
 let dirNames = [];
 const pdfCors = {
@@ -82,8 +83,8 @@ pdfServer.addRoute("POST", "/login", (req,res,body)=>{
         if(adminPass === body["password"]
         && adminUser === body["username"])
         {
-            const day = 86400000;
-            let expiry = new Date(Date.now() + day * 3);
+            const hour = 3600000;
+            let expiry = new Date(Date.now() + hour * config.expiryHours);
             //initiate session
             cookieValue = pdfSessionManager.StartSession({timeout:expiry});
             res.writeHead(202, {
