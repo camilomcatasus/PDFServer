@@ -14,13 +14,16 @@ A config file must be set up named config.json in the working directory. The fil
 
 The server expects the build to be in a directory named build in the working directory.
 
-Below demonstrates the how the server expects the files to be stored. It checks for subdirectories in the data folder. Each subdirectory is its own category, it will then check the files folder in each category. All of this data (file and directory names) is sent to the client, the client then uses this to ask for specific files. 
+Below demonstrates the how the server expects the files to be stored. It checks for subdirectories in the data folder. Each subdirectory is its own category, it will then check the files folder in each category. All of this data (file and directory names) is sent to the client, the client then uses this to ask for specific files. The files in the thumbnails folder must have the same name as its corresponding pdf to be displayed as a thumbnail to the client. 
 
-- data
--- research papers
----files
-----researchPaper.pdf
----thumbnails
-----researchPaper.jpg
--- music
----files
+|-- data
+|-- |-- research papers
+|-- |-- |-- files
+|-- |-- |-- |-- researchPaper.pdf
+|-- |-- |-- thumbnails
+|-- |-- |-- |-- researchPaper.jpg
+|-- |-- music
+|-- |-- |-- files
+|-- |-- |-- |-- odetojoy.pdf
+|-- |-- |-- thumbnails
+|-- |-- |-- |-- odetojoy.jpg
