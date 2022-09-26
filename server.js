@@ -17,15 +17,16 @@ const pdfCors = {
 //
 // LOAD DATA
 //
-
-dirNames = fs.readdirSync("./data");
-
-for(let i = 0; i < dirNames.length; i++)
+function loadData()
 {
-    let tempFiles = fs.readdirSync("./data/" + dirNames[i] + "/files");
-    fileNames.push(tempFiles);
+    dirNames = fs.readdirSync("./data");
+    for(let i = 0; i < dirNames.length; i++)
+    {
+        let tempFiles = fs.readdirSync("./data/" + dirNames[i] + "/files");
+        fileNames.push(tempFiles);
+    }
 }
-
+loadData();
 //
 // ROUTES
 //
@@ -102,6 +103,23 @@ pdfServer.addRoute("POST", "/login", (req,res,body)=>{
     {
         res.writeHead(400);
         res.end();
+    }
+});
+
+pdfServer.addRoute("POST", "/update", (req, res, body)=>{
+    if(req.headers.hasOwnProperty("cookie") && req.headers.cookie.includes("sessionId"))
+    {
+        //TODO: properly parse this (Multiple cookies)
+        let sessionId = req.headers.cookie.substring(10);
+        if(pdfSessionManager.IsSession(sessionId))
+        {
+            loadData();
+        }
+        else
+        {
+            res.writeHead(403);
+            res.end();
+        }
     }
 });
 

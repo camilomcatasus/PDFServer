@@ -4,7 +4,6 @@ import "./CategoryView.css"
 function CategoryView(props) {
 
     const [filter, setFilter] = useState("");
-    const [closed, setClosed] = useState(Array(100).fill(false));
     return (
     <>
         <div className="search-center-container">
@@ -24,34 +23,47 @@ function CategoryView(props) {
             }
             if(show)
             return (
-            <>
-                <h2>{category}</h2>
-                <div className="category-row">
-                {
-                    props.fileNames[index].map(
-                    (file, fileIndex) =>
-                    {
-                        if(filter == "" || file.includes(filter))
-                        return (
-                        <div className="category-file-container" onClick={()=>{props.selectionHandler(true, index, fileIndex)}}>
-                            <div style={{height: "15%", width: "100%", overflow: "hidden"}}><h3 >{file}</h3></div>
-                            <div style={{height: "83%", width:"100%"}}>
-                            <img
-                                src={"./data/" + category + "/thumbnails/" + file.substring(0,file.length-3) + "jpg"}
-                                className="thumbnail-image"/>
-                            </div>
-
-
-                        </div>);
-                    }
-                )}
-                </div>
-                <div className="separator">
-                </div>
-            </>
+                <Category
+                    fileNames={props.fileNames}
+                    selectionHandler={props.selectionHandler}
+                    index={index}
+                    category={category}
+                    filter={filter}/>
             );
         })}
     </>);
+}
+
+function Category(props)
+{
+    const [closed,setClosed] = useState(false);
+    return(
+        <>
+            <h2>{props.category} <button onClick={()=>{setClosed(!closed)}}>{!closed? "Close" : "Open"}</button></h2>
+            { !closed && <div className="category-row-scroll"><div className="category-row">
+            {
+
+                props.fileNames[props.index].map(
+                (file, fileIndex) =>
+                {
+                    if(props.filter == "" || file.includes(props.filter))
+                    return (
+                    <div className="category-file-container" onClick={()=>{props.selectionHandler(true, props.index, fileIndex)}}>
+                        <div style={{height: "15%", width: "100%", overflow: "hidden"}}><h3 >{file}</h3></div>
+                        <div style={{height: "83%", width:"100%"}}>
+                        <img
+                            src={"./data/" + props.category + "/thumbnails/" + file.substring(0,file.length-3) + "jpg"}
+                            className="thumbnail-image"/>
+                        </div>
+                    </div>);
+                }
+            )}
+            </div></div>
+            }
+            <div className="separator">
+            </div>
+        </>
+    );
 }
 
 export default CategoryView;
