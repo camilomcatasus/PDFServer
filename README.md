@@ -34,4 +34,4 @@ Below demonstrates the how the server expects the files to be stored. It checks 
 
 To build install the node modules for react (sigh).
 In the console run `npm install` then run `npm run build`.
-To start the server
+To start the server run `node Server.js` in the root directory.
