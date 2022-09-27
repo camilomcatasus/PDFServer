@@ -17,17 +17,25 @@ The server expects the build to be in a directory named build in the working dir
 Below demonstrates the how the server expects the files to be stored. It checks for subdirectories in the data folder. Each subdirectory is its own category, it will then check the files folder in each category. All of this data (file and directory names) is sent to the client, the client then uses this to ask for specific files. The files in the thumbnails folder must have the same name as its corresponding pdf to be displayed as a thumbnail to the client.
 ```
 .
-|-- data
-|-- |-- research papers
-|-- |-- |-- files
-|-- |-- |-- |-- researchPaper.pdf
-|-- |-- |-- thumbnails
-|-- |-- |-- |-- researchPaper.jpg
-|-- |-- music
-|-- |-- |-- files
-|-- |-- |-- |-- odetojoy.pdf
-|-- |-- |-- thumbnails
-|-- |-- |-- |-- odetojoy.jpg
+data
+├── Fantasy
+│   ├── files
+│   │   ├── KingThrushbeardByBros.Grimm.pdf
+│   │   ├── No More Stars.pdf
+│   │   └── The Shuttered Room.pdf
+│   └── thumbnails
+│       ├── KingThrushbeardByBros.Grimm.jpg
+│       ├── No More Stars.jpg
+│       └── The Shuttered Room.jpg
+└── Music
+    ├── files
+    │   ├── Arabesque no. 1.pdf
+    │   ├── Moonlight Sonata.pdf
+    │   └── Nocturne.pdf
+    └── thumbnails
+        ├── Arabesque no. 1.jpg
+        ├── Moonlight Sonata.jpg
+        └── Nocturne.jpg
 ```
 
 ## Build and Run
@@ -37,3 +45,6 @@ In the console run `npm install` then run `npm run build`.
 To start the server run `node Server.js` in the root directory.
 
 ## Demo
+https://pdfviwer-363715.uc.r.appspot.com
+
+empty username and password
