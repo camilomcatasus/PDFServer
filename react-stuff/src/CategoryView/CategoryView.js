@@ -46,7 +46,7 @@ function Category(props)
                 props.fileNames[props.index].map(
                 (file, fileIndex) =>
                 {
-                    if(props.filter == "" || file.includes(props.filter))
+                    if(props.filter == "" || file.toLowerCase().includes(props.filter.toLowerCase()))
                     return (
                     <div className="category-file-container" onClick={()=>{props.selectionHandler(true, props.index, fileIndex)}}>
                         <div style={{height: "15%", width: "100%", overflow: "hidden"}}><h3 >{file}</h3></div>

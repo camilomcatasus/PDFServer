@@ -1,5 +1,6 @@
 {
     "scripts": {
+        "install": "cd react-stuff && npm install && cd ..",
         "build": "cd app && rmdir /q /s build 2>nul && cd ../react-stuff && npm run build && move build ../app/build && cd ..",
         "start": "cd app && node server.js"
     }
